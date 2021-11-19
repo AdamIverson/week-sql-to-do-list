@@ -41,5 +41,56 @@ router.post('/', (req, res) => {
     });
 });
 
+// :id is a ROUTE PARAMETER
+  // the entire path of this route is
+  // /songs/:id
+  // To hit this route, we'd need a request like:
+    // GET /songs/123
+router.get('/:id', (req, res) => {
+    console.log('GET /tasks/:id')
+    console.log('req.params:', req.params);
+    const taskId = req.params.id;
+    console.log('taskId:', taskId);
+        // // We want to use the value that comes in through
+        // // :id in a SQL query, so we can do something like:
+        // // SELECT * FROM "songs" WHERE id=$1 ($1 will get
+        // // the value that comes in on :id)
+    const sqlText = `
+        SELECT * FROM "tasks"
+        WHERE "id"=$1;
+        `;
+    const sqlValues = [ taskId ];
+    pool.query(sqlText, sqlValues)
+        .then((dbResult) => {
+        // Note that dbResult.rows is an ARRAY with
+        // a single OBJECT inside of it:
+        console.log('dbResult.rows:', dbResult.rows);
+        res.send(dbResult.rows);
+    })
+        .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+    });
+})
+
+router.delete('/:id', (req, res) => {
+    console.log('DELETE /tasks/:id');
+    console.log('req.params:', req.params);
+    const taskIdToDelete = req.params.id;
+    const sqlText = `
+        DELETE FROM "tasks"
+            WHERE "id"=$1;
+    `;
+    const sqlValues = [ taskIdToDelete ];
+
+    pool.query(sqlText, sqlValues)
+        .then((dbResult) => {
+        res.sendStatus(200);
+    })
+        .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+    })
+});
 
 module.exports = router;
