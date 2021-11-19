@@ -23,5 +23,20 @@ function addTask() {
 }
 
 function renderTasks() {
-    
+    $.ajax({
+        type: 'GET',
+        url: '/tasks'
+    }).then((response) => {
+        $("#tasksTableBody").empty();
+        console.log("GET /songs response", response);
+        for (let task of response) {
+        $('#tasksTableBody').append(`
+            <tr>
+                <td>${task.task}</td>
+                <td>${task.completed}</td>
+                <td><button data-id="${task.id}">X</button></td>
+            </tr>
+        `);
+        }
+    });
 }
