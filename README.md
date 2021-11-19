@@ -9,7 +9,7 @@ Your project description goes here. What problem did you solve? How did you solv
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
 
 ### Checklist
-[ ] HTML - create input field, submit button, table to display list on DOM
-[ ] client.js - clickhandlers, refreshTaskList(GET), submitTask(POST), deleteTask(DELETE)
-[ ] server.js - source in taskRouter.js
-[ ] taskRouter.js - create this file, then source it to server.js, 
+- [ ] HTML - create input field, submit button, table to display list on DOM
+- [ ] client.js - clickhandlers, refreshTaskList(GET), submitTask(POST), deleteTask(DELETE)
+- [ ] server.js - source in taskRouter.js
+- [ ] taskRouter.js - create this file, then source it to server.js, 
