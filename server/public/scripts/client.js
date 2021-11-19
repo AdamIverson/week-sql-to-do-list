@@ -3,6 +3,7 @@ $(document).ready(onReady);
 function onReady() {
     renderTasks();
     $('#submit-btn').on('click', addTask);
+    $("#tasksTableBody").on('click', 'button', deleteTask);
 }
 
 function addTask() {
@@ -41,3 +42,14 @@ function renderTasks() {
         }
     });
 }
+
+function deleteTask() {
+    const taskIdToDelete = $(this).data('id');
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${taskIdToDelete}`
+    }).then((response) => {
+        console.log(response);
+        renderTasks();
+    })
+};
