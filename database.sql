@@ -1,10 +1,10 @@
-CREATE TABLE task (
+CREATE TABLE tasks (
 	id SERIAL,
 	task varchar(280),
 	completed boolean
 	);
 
-INSERT INTO "task"
+INSERT INTO "tasks"
     ("task", "completed")
 VALUES
     ('Mow the dang lawn', 'TRUE'),

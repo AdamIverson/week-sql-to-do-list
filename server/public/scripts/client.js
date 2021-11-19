@@ -22,3 +22,6 @@ function addTask() {
         });
 }
 
+function renderTasks() {
+    
+}

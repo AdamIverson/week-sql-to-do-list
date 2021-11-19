@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Tell express where to find our "public" files:
-app.use(express.static('server/public/'));
+app.use(express.static('server/public'));
 
 // Forward all requests to /songs to our songsRouter:
 app.use('/tasks', tasksRouter);
