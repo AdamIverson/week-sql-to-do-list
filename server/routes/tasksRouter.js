@@ -73,6 +73,32 @@ router.get('/:id', (req, res) => {
     });
 })
 
+router.put('/:id', (req, res) => {
+    console.log('req.params', req.params);
+    console.log('req.body', req.body);
+    const taskToUpdate = req.params.id;
+    let currentStatus = req.body.transferStatus;
+    currentStatus = true;
+    const sqlText = `
+    UPDATE "tasks"
+        SET "completed"=$1
+        WHERE "id"=$2;
+    `;
+    const sqlValues = [
+    currentStatus,
+    taskToUpdate
+    ]
+
+    pool.query(sqlText, sqlValues)
+    .then((dbResult) => {
+        res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+    })
+});
+
 router.delete('/:id', (req, res) => {
     console.log('DELETE /tasks/:id');
     console.log('req.params:', req.params);

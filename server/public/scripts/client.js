@@ -3,7 +3,8 @@ $(document).ready(onReady);
 function onReady() {
     renderTasks();
     $('#submit-btn').on('click', addTask);
-    $("#tasksTableBody").on('click', 'button', deleteTask);
+    $("#tasksTableBody").on('click', '.table-complete', completeTask);
+    $("#tasksTableBody").on('click', '.table-delete', deleteTask);
 }
 
 function addTask() {
@@ -11,7 +12,8 @@ function addTask() {
     console.log('in addTask');
     
     const newTask = {
-        task: $('#task-in').val()
+        task: $('#task-in').val(),
+        completed: false
         }
         $.ajax({
             type: 'POST',
@@ -36,11 +38,29 @@ function renderTasks() {
             <tr>
                 <td>${task.task}</td>
                 <td>${task.completed}</td>
-                <td><button data-id="${task.id}">X</button></td>
+                <td><button class="table-complete" data-id="${task.id}">COMPLETE</buton></td>
+                <td><button class="table-delete" data-id="${task.id}">DELETE</button></td>
             </tr>
         `);
         }
     });
+}
+
+function completeTask() {
+    const taskToComplete = $(this).data('id');
+    const currentStatus = $(this).data('status');
+
+    console.log('taskToComplete', taskToComplete);
+    console.log('currentStatus', currentStatus);
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${taskToComplete}`,
+        data: { completed: currentStatus }
+    }).then((res) => {
+        renderTasks();
+    }).catch((err) => {
+        console.error(err);
+    })
 }
 
 function deleteTask() {
