@@ -7,7 +7,7 @@ const app = express();
 const PORT = 5000;
 
 // Require the router:
-const songsRouter = require('./routes/songsRouter');
+const tasksRouter = require('./routes/tasksRouter');
 
 // Give us the ability to "read" HTTP request body data in
 // different encodings:
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.static('server/public'));
 
 // Forward all requests to /songs to our songsRouter:
-app.use('/songs', songsRouter);
+app.use('/tasks', tasksRouter);
 
 // Starts the server, and listens for requests:
 app.listen(PORT, () => {
