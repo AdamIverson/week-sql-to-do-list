@@ -1,6 +1,7 @@
 $(document).ready(onReady);
 
 function onReady() {
+    renderTasks();
     $('#submit-btn').on('click', addTask);
 }
 
