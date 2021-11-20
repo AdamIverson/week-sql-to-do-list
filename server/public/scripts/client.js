@@ -37,17 +37,18 @@ function renderTasks() {
             if(task.completed) {
                 $('#tasksTableBody').append(`
                 <tr>
-                    <td class="text-success">${task.task}</td>
-                    <td><button class="table-complete" data-id="${task.id}">COMPLETE</buton></td>
-                    <td><button class="table-delete" data-id="${task.id}">DELETE</button></td>
+                <td class="text-success">${task.task}</td>
+                <td><button class="btn btn-outline table-complete" data-id="${task.id}" disabled>COMPLETE</button></td>
+                <td><button class="btn btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
                 </tr>
+                </div>
             `);  
             } else {
         $('#tasksTableBody').append(`
             <tr>
                 <td class="text-danger">${task.task}</td>
-                <td><button class="table-complete" data-id="${task.id}">COMPLETE</buton></td>
-                <td><button class="table-delete" data-id="${task.id}">DELETE</button></td>
+                <td><button type="button" class="btn btn-outline table-complete" data-id="${task.id}">COMPLETE</button></td>
+                <td><button type="button" class="btn btn-outline btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
             </tr>
         `);
         }
