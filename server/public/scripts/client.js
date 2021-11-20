@@ -34,16 +34,26 @@ function renderTasks() {
         $("#tasksTableBody").empty();
         console.log("GET /songs response", response);
         for (let task of response) {
+            if(task.completed) {
+                $('#tasksTableBody').append(`
+                <tr>
+                <td class="text-success">${task.task}</td>
+                <td><button class="btn btn-outline table-complete" data-id="${task.id}" disabled>COMPLETE</button></td>
+                <td><button class="btn btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
+                </tr>
+                </div>
+            `);  
+            } else {
         $('#tasksTableBody').append(`
             <tr>
-                <td>${task.task}</td>
-                <td>${task.completed}</td>
-                <td><button class="table-complete" data-id="${task.id}">COMPLETE</buton></td>
-                <td><button class="table-delete" data-id="${task.id}">DELETE</button></td>
+                <td class="text-danger">${task.task}</td>
+                <td><button type="button" class="btn btn-outline table-complete" data-id="${task.id}">COMPLETE</button></td>
+                <td><button type="button" class="btn btn-outline btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
             </tr>
         `);
         }
-    });
+    };
+})
 }
 
 function completeTask() {
@@ -58,9 +68,14 @@ function completeTask() {
         data: { completed: currentStatus }
     }).then((res) => {
         renderTasks();
+        taskColor();
     }).catch((err) => {
         console.error(err);
     })
+}
+
+function taskColor() {
+    $(this).addClass("text-success");
 }
 
 function deleteTask() {
