@@ -4,7 +4,7 @@ function onReady() {
     renderTasks();
     $('#submit-btn').on('click', addTask);
     $("#tasksTableBody").on('click', '.table-complete', completeTask);
-    $("#tasksTableBody").on('click', '.table-delete', deleteTask);
+    $("#tasksTableBody").on('click', '.table-delete', deleteTask2);
 }
 
 function addTask() {
@@ -101,13 +101,71 @@ function taskColor() {
     $(this).addClass("text-success");
 }
 
+function deleteTask2() {
+
+// const taskIdToDelete = $(this).data('id');
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+        deleteTask();
+        swalWithBootstrapButtons.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+    )
+    } else if (
+      /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+    ) {
+    swalWithBootstrapButtons.fire(
+        'Cancelled',
+        'Your imaginary file is safe :)',
+        'error'
+    )
+    }
+})
+}
+
 function deleteTask() {
+    console.log('in deleteTask');
+    
     const taskIdToDelete = $(this).data('id');
-    $.ajax({
-        type: 'DELETE',
-        url: `/tasks/${taskIdToDelete}`
-    }).then((response) => {
+        $.ajax({
+            type: 'DELETE',
+            url: `/tasks/${taskIdToDelete}`
+        }).then((response) => {
         console.log(response);
         renderTasks();
-    })
-};
+});
+}
+// function deletePopUp() {
+//     Swal.fire({
+//         title: 'you will never get this back',
+//         showDenyButton: true,
+//         showCancelButton: false,
+//         confirmButtonText: 'DELETE',
+//         denyButtonText: `Don't delete`,
+//     }).then((result) => {
+//         /* Read more about isConfirmed, isDenied below */
+//     //     if (result.isConfirmed) {
+//     //         Swal.fire('Deleted!', '', 'success')
+//     // } else if (result.isDenied) {
+//     //         Swal.fire('Changes are not saved', '', 'info')
+//     //     }
+//     })
+// }
