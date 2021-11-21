@@ -10,7 +10,7 @@ function onReady() {
 function addTask() {
     console.log('click submit');
     console.log('in addTask');
-    
+    // if condition to require field
     const newTask = {
         task: $('#task-in').val(),
         completed: false
@@ -36,18 +36,18 @@ function renderTasks() {
         for (let task of response) {
             if(task.completed) {
                 $('#tasksTableBody').append(`
-                <tr>
-                <td class="text-success">${task.task}</td>
-                <td><button class="btn btn-outline table-complete" data-id="${task.id}" disabled>COMPLETE</button></td>
-                <td><button class="btn btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
+                <tr colspan="8" class="complete-row">
+                <td class="text-success table-box complete" >${task.task}</td>
+                <td class="table-box">COMPLETE</td>
+                <td><button class="btn btn-danger table-delete table-box" data-id="${task.id}">DELETE</button></td>
                 </tr>
                 </div>
             `);  
             } else {
         $('#tasksTableBody').append(`
-            <tr>
-                <td class="text-danger">${task.task}</td>
-                <td><button type="button" class="btn btn-outline table-complete" data-id="${task.id}">COMPLETE</button></td>
+            <tr colspan="8" class="danger-row">
+                <td  class="text-danger">${task.task}</td>
+                <td class="complete-btn-center"><button type="button" class="btn btn-outline table-complete" data-id="${task.id}">COMPLETE</button></td>
                 <td><button type="button" class="btn btn-outline btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
             </tr>
         `);
@@ -59,6 +59,7 @@ function renderTasks() {
 function completeTask() {
     const taskToComplete = $(this).data('id');
     const currentStatus = $(this).data('status');
+    Swal.fire('did u do it tho')
 
     console.log('taskToComplete', taskToComplete);
     console.log('currentStatus', currentStatus);
