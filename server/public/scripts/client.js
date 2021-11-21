@@ -11,6 +11,11 @@ function addTask() {
     console.log('click submit');
     console.log('in addTask');
     // if condition to require field
+    if($('#task-in').val() === '') {
+        Swal.fire('come on');
+        return;
+    } else {
+
     const newTask = {
         task: $('#task-in').val(),
         completed: false
@@ -24,6 +29,7 @@ function addTask() {
             $('#task-in').val(''),
             renderTasks();
         });
+    }
 }
 
 function renderTasks() {

@@ -20,6 +20,18 @@ td {
     padding: 20px;
 }
 
+input:invalid {
+    border: 2px solid #F34B2B;
+}
+
+input:invalid:required {
+    background-image: linear-gradient(to right, pink, lightgreen);
+}
+
+input:valid {
+    border: 2px solid black;
+}
+
 #headline{
     background-image: linear-gradient(#0a1519, #6ff32b) !important;
     color: #F34B2B;
