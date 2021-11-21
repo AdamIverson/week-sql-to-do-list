@@ -59,7 +59,23 @@ function renderTasks() {
 function completeTask() {
     const taskToComplete = $(this).data('id');
     const currentStatus = $(this).data('status');
-    Swal.fire('did u do it tho')
+    Swal.fire({
+        title: 'did u rly tho',
+        text: "if u lie i will kno",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'i did it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+            'good job pal',
+            'A+',
+            'what a winner you are'
+        )
+    }
+})
 
     console.log('taskToComplete', taskToComplete);
     console.log('currentStatus', currentStatus);
