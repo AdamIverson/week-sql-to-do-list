@@ -1,15 +1,17 @@
-# Weekend SQL 
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Weekend SQL To-Do List
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+***72-hour Sprint***
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+Sure, there are a lot of task apps and whatnot out there, but there aren't nearly enough chonky letters involved, so here we are. I don't like the term "Hero" either, but lots of people are saying it.
 
-### Checklist
-- [x] HTML - create input field, submit button, table to display list on DOM
-- [ ] client.js - clickhandlers, refreshTaskList(GET), submitTask(POST), deleteTask(DELETE)
-- [ ] server.js - source in taskRouter.js
-- [ ] taskRouter.js - create this file, then source it to server.js, 
+Enter tasks into input field and click Submit to add them to your list. There is one option to mark your task as completed via the COMPLETE IT button. There is a DELETE button that will delete the task with which it is associated.
+
+## Built With
+
+HTML, CSS, JavaScript, Express, SQL
+
+## Acknowledgement
+
+Prime Digital Academy, Google dot com
