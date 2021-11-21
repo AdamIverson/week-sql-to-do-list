@@ -38,7 +38,7 @@ function renderTasks() {
                 $('#tasksTableBody').append(`
                 <tr colspan="8" class="complete-row">
                 <td class="text-success table-box complete" >${task.task}</td>
-                <td class="table-box">COMPLETE</td>
+                <td class="table-box">COMPLETED</td>
                 <td><button class="btn btn-danger table-delete table-box" data-id="${task.id}">DELETE</button></td>
                 </tr>
                 </div>
@@ -47,7 +47,7 @@ function renderTasks() {
         $('#tasksTableBody').append(`
             <tr colspan="8" class="danger-row">
                 <td  class="text-danger">${task.task}</td>
-                <td class="complete-btn-center"><button type="button" class="btn btn-outline table-complete" data-id="${task.id}">COMPLETE</button></td>
+                <td class="complete-btn-center"><button type="button" class="btn btn-outline table-complete" data-id="${task.id}">COMPLETE IT</button></td>
                 <td><button type="button" class="btn btn-outline btn-danger table-delete" data-id="${task.id}">DELETE</button></td>
             </tr>
         `);
@@ -63,8 +63,8 @@ function completeTask() {
         title: 'did u rly tho',
         text: "if u lie i will kno",
         icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        showCancelButton: false,
+        confirmButtonColor: '#6ff32b',
         cancelButtonColor: '#d33',
         confirmButtonText: 'i did it!'
     }).then((result) => {
