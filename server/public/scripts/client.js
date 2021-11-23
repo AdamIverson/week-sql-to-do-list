@@ -4,7 +4,7 @@ function onReady() {
     renderTasks();
     $('#submit-btn').on('click', addTask);
     $("#tasksTableBody").on('click', '.table-complete', completeTask);
-    $("#tasksTableBody").on('click', '.table-delete', deleteTask2);
+    $("#tasksTableBody").on('click', '.table-delete', deleteTask);
 }
 
 function addTask() {
@@ -101,45 +101,45 @@ function taskColor() {
     $(this).addClass("text-success");
 }
 
-function deleteTask2() {
+// function deleteTask2() {
 
-// const taskIdToDelete = $(this).data('id');
-const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-})
+// // const taskIdToDelete = $(this).data('id');
+// const swalWithBootstrapButtons = Swal.mixin({
+//     customClass: {
+//         confirmButton: 'btn btn-success',
+//         cancelButton: 'btn btn-danger'
+//     },
+//     buttonsStyling: false
+// })
 
-swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: false
-  }).then((result) => {
-    if (result.isConfirmed) {
-        deleteTask();
-        swalWithBootstrapButtons.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-    )
-    } else if (
-      /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-    ) {
-    swalWithBootstrapButtons.fire(
-        'Cancelled',
-        'Your imaginary file is safe :)',
-        'error'
-    )
-    }
-})
-}
+// swalWithBootstrapButtons.fire({
+//     title: 'Are you sure?',
+//     text: "You won't be able to revert this!",
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonText: 'Yes, delete it!',
+//     cancelButtonText: 'No, cancel!',
+//     reverseButtons: false
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//         deleteTask($(this).data('id'));
+//         swalWithBootstrapButtons.fire(
+//         'Deleted!',
+//         'Your file has been deleted.',
+//         'success'
+//     )
+//     } else if (
+//       /* Read more about handling dismissals below */
+//         result.dismiss === Swal.DismissReason.cancel
+//     ) {
+//     swalWithBootstrapButtons.fire(
+//         'Cancelled',
+//         'Your imaginary file is safe :)',
+//         'error'
+//     )
+//     }
+// })
+// }
 
 function deleteTask() {
     console.log('in deleteTask');
